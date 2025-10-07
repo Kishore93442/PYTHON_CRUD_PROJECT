@@ -92,7 +92,7 @@ else:
             'NAME': 'crud',
             'USER': 'root',
             'PASSWORD': 'Kish2324',
-            'HOST': 'localhost',
+            'HOST': '127.0.0.1',
             'PORT': '3306',
         }
     }
