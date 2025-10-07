@@ -82,16 +82,20 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'crud',
-        'USER': 'root',
-        'PASSWORD': 'Kish2324',
-        'HOST': 'localhost',
-        'PATH': '3306'
+
+if os.environ.get("DATABASE_URL"):
+    DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'crud',
+            'USER': 'root',
+            'PASSWORD': 'Kish2324',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
     }
-}
 
 
 # Password validation
@@ -139,5 +143,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # For Render PostgreSQL (you can adjust if using MySQL)
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
